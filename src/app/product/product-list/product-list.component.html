@@ -1,0 +1,62 @@
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Product</h1>
+    <a routerLink="/dashboard/product/productCreate" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+            class="fa-sm text-white-50"></i>Create Product</a>
+</div>
+
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Product List</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Model</th>
+                        <th>Price</th>
+                        <th>Color</th>
+                        <th>Memory Storage</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor=" let data of product">
+                        <td><a [routerLink]="['/dashboard/product/productView',data.id]">{{data.name}}</a></td>
+                        <td>{{data.model}}</td>
+                        <td>{{data.price}}</td>
+                        <td>{{data.color}}</td>
+                        <td>{{data.memory}}</td>
+                        <td><a [routerLink]="['/dashboard/product/productEdit',data.id]"><i class="fa fa-pencil-square-o"></i></a>   |   <a data-toggle="modal" data-target="#exampleModal" style="cursor:pointer;" (click)="deleteProduct(data.id)"><i class="fa fa-times"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Product - {{deleteId}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <span>Are you sure delate Product - {{deleteId}}</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="removeProductID()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
